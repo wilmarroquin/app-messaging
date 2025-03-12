@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "81391318929",
+    "project_id": "chatmovil-backend",
+    "storage_bucket": "chatmovil-backend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81391318929:android:80c3d6833c6722325d0c30",
+        "android_client_info": {
+          "package_name": "com.example.appumg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAenlC_5kzpz4yWmGFv4i1qHBbzwczaA5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81391318929:android:c71ab53844e869c55d0c30",
+        "android_client_info": {
+          "package_name": "com.example.chatmovil"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAenlC_5kzpz4yWmGFv4i1qHBbzwczaA5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
