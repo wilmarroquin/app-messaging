@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_login"
     android:padding="16dp"
-    tools:context=".LoginPasswActivity"
-    android:background="@color/background_login">
+    tools:context=".LoginRegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,21 +15,25 @@
         android:gravity="center"
         android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:src="@drawable/chat_icon"
-        app:tint="@color/colorBlack"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recuperar"
-            android:textSize="27sp"
+            android:text="@string/registro_de_usuario"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:layout_marginTop="20dp"/>
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:padding="10dp"
+            android:hint="Nombre de usuario:"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorWhite"
+            android:drawablePadding="10dp"
+            app:drawableLeftCompat="@drawable/user_name_icon"
+            android:background="@drawable/edit_text_rounded"
+            android:layout_margin="20dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -38,19 +42,31 @@
             android:hint="Email:"
             android:inputType="textEmailAddress"
             android:textColorHint="@color/colorWhite"
+            android:drawablePadding="10dp"
             app:drawableLeftCompat="@drawable/email_icon"
+            android:background="@drawable/edit_text_rounded"
+            android:layout_margin="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:padding="10dp"
+            android:hint="Password:"
+            android:inputType="textPassword"
+            android:textColorHint="@color/colorWhite"
+            android:drawablePadding="10dp"
+            app:drawableLeftCompat="@drawable/security_icon"
             android:background="@drawable/edit_text_rounded"
             android:layout_margin="20dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_recuperar"
+            android:text="@string/registrese"
+            android:textColor="@color/white"
             android:backgroundTint="@color/login_button"
             android:textSize="20sp"/>
 
-
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:background="@color/background_login"
     tools:context=".LoginActivity">
     
@@ -37,6 +38,7 @@
               android:hint="Email:"
               android:inputType="textEmailAddress"
               android:textColorHint="@color/colorWhite"
+              android:drawablePadding="10dp"
               app:drawableLeftCompat="@drawable/email_icon"
               android:background="@drawable/edit_text_rounded"
               android:layout_margin="20dp"/>
@@ -48,6 +50,7 @@
             android:hint="Password:"
             android:inputType="textPassword"
             android:textColorHint="@color/colorWhite"
+            android:drawablePadding="10dp"
             app:drawableLeftCompat="@drawable/security_icon"
             android:background="@drawable/edit_text_rounded"
             android:layout_margin="20dp"/>
