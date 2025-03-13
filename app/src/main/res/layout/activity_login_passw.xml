@@ -37,6 +37,7 @@
             android:padding="10dp"
             android:hint="Email:"
             android:inputType="textEmailAddress"
+            android:drawablePadding="10dp"
             android:textColorHint="@color/colorWhite"
             app:drawableLeftCompat="@drawable/email_icon"
             android:background="@drawable/edit_text_rounded"

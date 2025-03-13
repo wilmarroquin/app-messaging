@@ -15,6 +15,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/chat_icon"
+            app:tint="@color/colorBlack"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
