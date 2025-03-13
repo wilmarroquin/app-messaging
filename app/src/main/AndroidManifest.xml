@@ -22,9 +22,6 @@
             android:name=".LoginPasswActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginPassw"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
