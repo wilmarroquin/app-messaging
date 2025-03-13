@@ -30,6 +30,7 @@
             android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/inputUserName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:padding="10dp"
@@ -42,6 +43,7 @@
             android:layout_margin="20dp"/>
 
         <EditText
+            android:id="@+id/inputEmail_register"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:padding="10dp"
@@ -54,6 +56,7 @@
             android:layout_margin="20dp"/>
 
         <EditText
+            android:id="@+id/inputPassword_register"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:padding="10dp"
@@ -66,12 +69,22 @@
             android:layout_margin="20dp"/>
 
         <Button
+            android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registrese"
             android:textColor="@color/white"
             android:backgroundTint="@color/login_button"
             android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/txtIniciarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar sesion"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:layout_marginStart="10dp"/>
 
     </LinearLayout>
 
