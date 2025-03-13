@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
             else -> {
                 progressBar.visibility = View.VISIBLE  // Mostrar barra de carga
 
-                mAuth.signInWithEmailAndPassword(email, password)
+                    mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         progressBar.visibility = View.GONE  // Ocultar barra de carga
 
@@ -71,9 +71,7 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(
                                 applicationContext,
-                                "Error: ${task.exception?.localizedMessage ?: "No se pudo iniciar sesión"}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                                "Error: ${task.exception?.localizedMessage ?: "No se pudo iniciar sesión"}",Toast.LENGTH_LONG).show()
                         }
                     }
             }
