@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    /* private fun verificarCredenciales() {
+    private fun verificarCredenciales() {
         val email = txtInputEmail.text.toString().trim()
         val password = txtInputPassword.text.toString().trim()
 
@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
                     }
             }
         }
-    } */
+    }
 
     private fun showError(input: EditText, message: String) {
         input.error = message
