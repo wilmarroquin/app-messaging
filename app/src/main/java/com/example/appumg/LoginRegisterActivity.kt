@@ -65,7 +65,7 @@ class LoginRegisterActivity : AppCompatActivity() {
 
         val email = txtInputEmail.text.toString().trim()
         val password = txtInputPassword.text.toString().trim()
-        val userName = txtInputUserName.text.toString().trim()
+        var userName = txtInputUserName.text.toString().trim()
 
         val emailPattern = Regex("^[A-Za-z0-9._%+-]+@miumg\\.edu\\.gt$")
 
