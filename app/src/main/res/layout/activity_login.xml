@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:background="@color/background_login"
     tools:context=".LoginActivity">
-    
+
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -16,10 +16,14 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:src="@drawable/chat_icon"
-            app:tint="@color/colorBlack"/>
+            app:tint="@color/colorBlack"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,6 +33,9 @@
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
             android:fontFamily="monospace"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"/>
 
           <EditText
@@ -39,22 +46,26 @@
               android:hint="Email:"
               android:inputType="textEmailAddress"
               android:textColorHint="@color/colorWhite"
-              android:drawablePadding="10dp"
               app:drawableLeftCompat="@drawable/email_icon"
+              android:drawablePadding="10dp"
               android:background="@drawable/edit_text_rounded"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
               android:layout_margin="20dp"/>
 
         <EditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:padding="10dp"
+            android:background="@drawable/edit_text_rounded"
+            android:drawablePadding="10dp"
             android:hint="Password:"
             android:inputType="textPassword"
+            android:padding="10dp"
             android:textColorHint="@color/colorWhite"
-            android:drawablePadding="10dp"
             app:drawableLeftCompat="@drawable/security_icon"
-            android:background="@drawable/edit_text_rounded"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_margin="20dp"/>
 
         <Button
