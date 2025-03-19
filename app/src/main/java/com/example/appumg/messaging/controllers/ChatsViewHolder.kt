@@ -23,7 +23,7 @@ class ChatsViewHolder(view: View): RecyclerView.ViewHolder(view) {
         //val iconUrl = chat.iconUrl
         if (chat.hasCustomIcon) {
             val iconUrl = chat.iconUrl
-            if (!iconUrl.isNullOrEmpty()) {
+            if (iconUrl.isNullOrEmpty()) {
                 Glide.with(binding.ivChatIcon.context)
                     .load(iconUrl)
                     .placeholder(android.R.drawable.sym_def_app_icon)
@@ -34,7 +34,6 @@ class ChatsViewHolder(view: View): RecyclerView.ViewHolder(view) {
         } else {
             binding.ivChatIcon.setImageResource(android.R.drawable.sym_def_app_icon)
         }
-
         binding.root.setOnClickListener { onItemSelected(chat) }
     }
 

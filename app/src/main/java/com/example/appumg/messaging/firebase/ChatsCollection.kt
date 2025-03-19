@@ -81,13 +81,15 @@ class ChatsCollection(userId: String) {
             chatId = document.id
             chatName = document.getString("chatName").orEmpty()
             creatorId = document.getString("creatorId").orEmpty()
+            iconUrl = document.getString("iconUrlId").orEmpty()
             hasCustomIcon = document.getBoolean("hasCustomIcon")?: false
             creationTimestamp = document.getTimestamp("creationTimestamp")?: Timestamp.now()
             lastMessageTimestamp = document.getTimestamp("lastMessageTimestamp")?: Timestamp.now()
             lastMessage = document.getString("lastMessage").orEmpty()
-            membersId = document.get("membersId") as? ArrayList<String> ?: arrayListOf()
-            administratorsId = document.get("administratorsId") as? ArrayList<String> ?: arrayListOf()
-
+            membersId = (document.get("membersId") as? List<*>)?.mapNotNull {
+                it as? String }?.toCollection(ArrayList()) ?: arrayListOf()
+            administratorsId = (document.get("administratorsId") as? List<*>)?.mapNotNull {
+                it as? String }?.toCollection(ArrayList()) ?: arrayListOf()
         }
 
     }

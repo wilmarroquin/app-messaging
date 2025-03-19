@@ -11,5 +11,6 @@ class Chat (
     var hasCustomIcon: Boolean = false,
     var lastMessageTimestamp: Timestamp= Timestamp.now(),
     var lastMessage: String = "",
-    var membersId: List<String>?=null
+    var membersId: List<String>?=null,
+    var iconUrl: String?= ""
 )
