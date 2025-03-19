@@ -2,7 +2,7 @@ package com.example.appumg.messaging.models
 
 import com.google.firebase.Timestamp
 
-class Chat (
+data class Chat (
     var administratorsId: List<String>?=null,
     var chatId: String?=null,
     var chatName: String = "",

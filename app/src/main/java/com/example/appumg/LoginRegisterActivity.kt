@@ -9,11 +9,10 @@ import android.widget.Toast
 import android.content.Intent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.WindowInsetsCompat
 import com.example.appumg.messaging.models.User
 import com.example.appumg.messaging.firebase.UsersCollection
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginRegisterActivity : AppCompatActivity() {
@@ -24,6 +23,7 @@ class LoginRegisterActivity : AppCompatActivity() {
     private lateinit var txtInputPassword: EditText
     private lateinit var txtInputUserName: EditText
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     private lateinit var userCollections: UsersCollection
     private lateinit var progressDialog: AlertDialog
 
@@ -48,6 +48,7 @@ class LoginRegisterActivity : AppCompatActivity() {
         }
 
         mAuth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         progressDialog = AlertDialog.Builder(this)
             .setTitle("Registrando...")
@@ -74,7 +75,6 @@ class LoginRegisterActivity : AppCompatActivity() {
             !email.matches(emailPattern) -> showError(txtInputEmail, "Correo no válido. Use un correo @miumg.edu.gt")
             password.isEmpty() || password.length < 7 -> showError(txtInputPassword, "La contraseña debe tener al menos 7 caracteres")
             userName.isEmpty() || userName.length > 20 -> showError(txtInputUserName, "El nombre de usuario debe ser menor a 20 caracteres")
-
             else -> {
                 progressDialog.show()
                 mAuth.createUserWithEmailAndPassword(email, password)
@@ -82,19 +82,29 @@ class LoginRegisterActivity : AppCompatActivity() {
                         progressDialog.dismiss()
                         if (task.isSuccessful) {
                             val user = mAuth.currentUser
-                            val newUser = User().apply {
-                                userId = user?.uid
-                                userEmail = email
-                                userName = userName
-                                hasCustomIcon = false // TODO: Implementar funcionalidad de imágenes
+                            val userId = user?.uid
+
+                            val userData = hashMapOf(
+                                "usuarioID" to userId,
+                                "pswd" to password, // ⚠️ No es seguro almacenar contraseñas en Firestore
+                                "tokenID" to "" // Aquí puedes agregar el token de autenticación si lo necesitas
+                            )
+
+                            userId?.let {
+                                db.collection("BD_CHAT").document("USER")
+                                    .collection("Usuarios").document(userId)
+                                    .set(userData)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(applicationContext, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(this, LoginActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                    .addOnFailureListener {
+                                        Toast.makeText(applicationContext, "Error al guardar en Firestore", Toast.LENGTH_SHORT).show()
+                                    }
                             }
-
-
-                            Toast.makeText(applicationContext, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, LoginRegisterActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }else {
+                        } else {
                             Toast.makeText(applicationContext, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
                         }
                     }
