@@ -66,10 +66,8 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             val user = mAuth.currentUser
                             user?.let {
-                                verificarUsuarioEnFirestore(it.uid, email)
+                                verificarUsuarioEnFirestore(it.uid, email)  // Solo si la autenticación es exitosa
                             }
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
                         } else {
                             Toast.makeText(
                                 applicationContext,
@@ -89,23 +87,28 @@ class LoginActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
-                    // Usuario encontrado en Firestore
-                    val intent = Intent(this, ChatsActivity::class.java)
-                    intent.putExtra("email", email)
-                    intent.putExtra("userId", userId)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    // Usuario encontrado en Firestore, navegamos a la actividad de Chats
+                    val intent = Intent(this, ChatsActivity::class.java).apply {
+                        putExtra("email", email)
+                        putExtra("userId", userId)
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
                     startActivity(intent)
+                    finish()  // Finalizar actividad de login para no volver atrás
                 } else {
                     // Usuario no registrado en Firestore
-                    Toast.makeText(applicationContext, "Usuario no registrado en Firestore.", Toast.LENGTH_LONG).show()
-                    mAuth.signOut()
+                    Toast.makeText(
+                        applicationContext,
+                        "Usuario no registrado en Firestore.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    mAuth.signOut()  // Cerrar sesión si no está registrado en la base de datos
                 }
             }
             .addOnFailureListener {
                 Toast.makeText(applicationContext, "Error al conectar con Firestore.", Toast.LENGTH_LONG).show()
             }
     }
-
     private fun showError(input: EditText, message: String) {
         input.error = message
         input.requestFocus()

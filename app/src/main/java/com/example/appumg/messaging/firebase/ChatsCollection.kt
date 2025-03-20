@@ -11,7 +11,7 @@ import kotlinx.coroutines.tasks.await
 import java.util.ArrayList
 import kotlin.math.log
 
-class ChatsCollection(userId: String) {
+class ChatsCollection(private val userId: String) {
     private val firestoreInstance = FirebaseFirestore.getInstance()
     val chatCollectionReference = firestoreInstance.collection("Chats")
     val userChatList: Query = chatCollectionReference.whereArrayContains("membersId", userId)
@@ -74,22 +74,18 @@ class ChatsCollection(userId: String) {
             null
         }
     }
-}
 
-    private fun documentToChatItem(document: DocumentSnapshot): Chat{
-        return Chat().apply {
-            chatId = document.id
-            chatName = document.getString("chatName").orEmpty()
-            creatorId = document.getString("creatorId").orEmpty()
-            iconUrl = document.getString("iconUrlId").orEmpty()
-            hasCustomIcon = document.getBoolean("hasCustomIcon")?: false
-            creationTimestamp = document.getTimestamp("creationTimestamp")?: Timestamp.now()
-            lastMessageTimestamp = document.getTimestamp("lastMessageTimestamp")?: Timestamp.now()
-            lastMessage = document.getString("lastMessage").orEmpty()
-            membersId = (document.get("membersId") as? List<*>)?.mapNotNull {
-                it as? String }?.toCollection(ArrayList()) ?: arrayListOf()
-            administratorsId = (document.get("administratorsId") as? List<*>)?.mapNotNull {
-                it as? String }?.toCollection(ArrayList()) ?: arrayListOf()
-        }
 
+    fun documentToChatItem(document: DocumentSnapshot): Chat {
+        return Chat(
+            chatId = document.id,
+            chatName = document.getString("chatName").orEmpty(),
+            lastMessage = document.getString("lastMessage").orEmpty(),
+            membersId = document.get("membersId") as List<String>,
+            administratorsId = document.get("administratorsId") as List<String>,
+            lastMessageTimestamp = document.getTimestamp("lastMessageTimestamp") ?: Timestamp.now(),
+            creationTimestamp = document.getTimestamp("creationTimestamp") ?: Timestamp.now(),
+            hasCustomIcon = document.getBoolean("hasCustomIcon") ?: false
+        )
     }
+}
